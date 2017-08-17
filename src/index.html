@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+    <responsive-child>
+      <main class="interactive">
+        <h1> Traffic infractions in Seattle </h1>
+        <div class="chatter"> Explore the most common traffic infractions in Seattle. Select a specific violation to see the change in infractions issued over time, or click on a year to see the breakdown of individual infractions.</div>
+        <div class="nav">
+          <div class="label"> Choose a type of traffic violation to explore </div>
+          <select class="infraction" id="infraction">
+            <option value="total">Select violation</option>
+
+            <% for (var k in csv.columns) { %>
+            <option value="<%= k %>"><%= csv.columns[k].text %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="key">
+          <div class="border">
+            <div class="swatch chosen"></div>
+            Chosen infractions
+          </div>
+          <div class="border">
+            <div class="swatch total"></div>
+            Total infractions
+          </div>
+        </div>
+        <div class="outer">
+        </div>
+        <div class="source">
+          Source:
+        </div>
+        <div class="credit">
+          ELLIS SIMANI / THE SEATTLE TIMES
+        </div>
+      </main>
+    </responsive-child>
+
+    <script>
+window.trafficData = <%= JSON.stringify(csv.traffic) %>;
+window.trafficColumns = <%= JSON.stringify(csv.columns) %>;
+    </script>
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>

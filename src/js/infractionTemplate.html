@@ -1,0 +1,37 @@
+<%
+var chosen = data.name;
+var values = data.traffic.map(function(n) { return n.total });
+var highest = Math.max.apply(null, values);
+%>
+<% data.traffic.forEach(function(row) { %>
+<div class="graph">
+  <div class="row">
+    <div class="year"><%= row.year %></div>
+    <div class="stacked-bar">
+      <%
+      var value = chosen == "total" ? 0 : row[chosen];
+      var total = (row.total - value) / highest * 100;
+      var selected = value / highest * 100;
+      if (chosen != "total") {
+      %>
+      <span style="width: <%= selected.toFixed(2) %>%" class="chosen bar"><div class="caption"> <%= row[chosen].toLocaleString(undefined, {maximumFractionDigits: 1}) %> </div></span>
+      <% } %>
+      <span style="width: <%= total.toFixed(2) %>%" class="complete bar"><div class="caption"> <%= row.total.toLocaleString(undefined, {maximumFractionDigits: 1}) %> </div></span>
+    </div>
+    <div class="description">
+        <table class="tooltip">
+            <tr>
+              <th>Infraction</th>
+              <th>Total</th>
+              <% for (var k in data.columns) { %>
+            </tr>
+            <tr>
+              <td><%= data.columns[k].text %></td>
+              <td><%= row[k] %></td>
+            </tr>
+                  <% } %>
+        </table>
+    </div>
+  </div>
+</div>
+<% }); %>

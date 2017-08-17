@@ -1,0 +1,193 @@
+@import "seattletimes";
+
+main.interactive {
+  max-width: 630px;
+}
+
+h1 {
+  @media @mobile {
+    font-size: 25px;
+    margin-top: 0;
+  }
+}
+
+.chatter {
+  margin-bottom: 30px;
+  font-size: 16px;
+
+  @media @mobile {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+.key {
+  font-size: 15px;
+  .display-flex();
+  .align-items(flex-start);
+  padding-bottom: 15px;
+  padding-top: 15px;
+
+  @media @mobile {
+    display: block;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .border {
+    padding-right: 15px;
+    display: inline-block;
+  }
+
+  .swatch {
+    display: inline-block;
+    margin-right: 5px;
+    height: 10px;
+    width: 10px;
+    border: 1px solid gray;
+
+    &.total { background: #e5af9b }
+    &.chosen { background: #b73d1f }
+  }
+}
+
+.source, .note {
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.credit {
+  font-size: 13px;
+  text-align: right;
+  margin-top: 8px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+
+  @media @mobile {
+    display: block;
+  }
+
+  .label {
+    padding-right: 10px;
+
+    @media @mobile {
+      font-size: 15px;
+      font-family: @df-sans;
+    }
+  }
+  select {
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 4px;
+
+    @media @mobile {
+      margin-top: 10px;
+    }
+  }
+}
+
+.row {
+  .display-flex();
+  .align-items(flex-start);
+  .flex-wrap(wrap);
+  margin-bottom: 10px;
+
+  &:hover {
+    .year {
+      font-weight: bold;
+    }
+  }
+
+  .year {
+    // display: block;
+    width: 55px;
+    margin-left: 10px;
+    @media @mobile {
+      font-size: 15px;
+      margin-left: 0px;
+      width: 40px;
+    }
+  }
+
+  .total {
+    font-size: 14px;
+    margin-left: 2px;
+  }
+  .stacked-bar {
+    width: 75%;
+    height: 20px;
+    color:@df-blue;
+    margin-bottom: 5px;
+
+    @media @mobile {
+      width: 70%
+    }
+    .bar {
+      display: inline-block;
+      height:100%;
+      box-sizing: border-box;
+      float: left;
+      font-weight: bold;
+      font-family: "ff-dagny-web-pro";
+      font-size: 10px;
+      position: relative;
+    }
+
+    .complete {
+      background: #e5af9b;
+
+      & .caption {
+        position: absolute;
+        left: 100%;
+      }
+    }
+    .chosen {
+      background: #b73d1f;
+
+      & .caption {
+        position: absolute;
+        left: 100%;
+        z-index: 999;
+        transform: translateZ(0);
+      }
+    }
+    .caption {
+      color: black;
+      margin-left: 5px;
+      font-size: 13px;
+    }
+  }
+}
+
+.description {
+  .flex(0 0 100%);
+  .tooltip {
+    font-size: 13px;
+    margin-left: 63px;
+    display: none;
+
+    @media @mobile {
+      margin-left: 33px;
+    }
+
+    th {
+        color: black;
+        width: 200px;
+        text-align: left;
+        padding-left: 5px;
+        font-weight: bold;
+    }
+
+    td {
+      padding-left: 5px;
+    }
+
+    .show-tooltip & {
+      display: block;
+    }
+  }
+}
