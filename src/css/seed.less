@@ -12,7 +12,7 @@ h1 {
 }
 
 .chatter {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 16px;
 
   @media @mobile {
@@ -47,7 +47,7 @@ h1 {
     border: 1px solid gray;
 
     &.total { background: #e5af9b }
-    &.chosen { background: #b73d1f }
+    &.chosen { background: lightsteelblue }
   }
 }
 
@@ -60,34 +60,46 @@ h1 {
   font-size: 13px;
   text-align: right;
   margin-top: 8px;
+
+  @media @mobile {
+    text-align: left;
+  }
 }
 
 .nav {
-  display: flex;
-  align-items: center;
-  padding-bottom: 10px;
+  // .display-flex();
+  // .align-items(flex-start);
+  padding: 8px;
+  margin: auto;
 
-  @media @mobile {
-    display: block;
-  }
+  input[type="radio"] {
+      display: none;
 
-  .label {
-    padding-right: 10px;
+      & + label {
+              background-color: @df-light-gray;
+              padding: 5px 16px;
+              color: white;
+              margin-bottom: 7px;
+              text-decoration: none;
+              display: inline-block;
+              text-align: center;
+              cursor: pointer;
+              font-size: 14px;
+              color: black;
+              font-family: @df-sans;
+              font-weight: bold;
+              border-radius: 4px;
 
-    @media @mobile {
-      font-size: 15px;
-      font-family: @df-sans;
-    }
-  }
-  select {
-    font-size: 15px;
-    padding: 5px;
-    border-radius: 4px;
+              @media @mobile {
+                font-size: 14px;
+              }
+            }
 
-    @media @mobile {
-      margin-top: 10px;
-    }
-  }
+            &:checked + label {
+              background: #adb4bf;
+            }
+
+      }
 }
 
 .row {
@@ -146,7 +158,7 @@ h1 {
       }
     }
     .chosen {
-      background: #b73d1f;
+      background: lightsteelblue;
 
       & .caption {
         position: absolute;
@@ -170,20 +182,14 @@ h1 {
     margin-left: 63px;
     display: none;
 
+    .title{
+      border-bottom: 1px solid @df-light-gray;
+      width: 140px;
+
+    }
+
     @media @mobile {
-      margin-left: 33px;
-    }
-
-    th {
-        color: black;
-        width: 200px;
-        text-align: left;
-        padding-left: 5px;
-        font-weight: bold;
-    }
-
-    td {
-      padding-left: 5px;
+      margin-left: 40px;
     }
 
     .show-tooltip & {

@@ -9,31 +9,31 @@
     <responsive-child>
       <main class="interactive">
         <h1> Traffic infractions in Seattle </h1>
-        <div class="chatter"> Explore the most common traffic infractions in Seattle. Select a specific violation to see the change in infractions issued over time, or click on a year to see the breakdown of individual infractions.</div>
+        <div class="chatter"> Explore the trend in ticketing for a selection of traffic infraction categories in Seattle from 2010 to 2016. Click on a bar for more detail. </div>
         <div class="nav">
-          <div class="label"> Choose a type of traffic violation to explore </div>
-          <select class="infraction" id="infraction">
-            <option value="total">Select violation</option>
-
-            <% for (var k in csv.columns) { %>
-            <option value="<%= k %>"><%= csv.columns[k].text %></option>
-            <% } %>
-          </select>
+          <% for (var k in csv.columns) { %>
+            <% if (k == "total") { %>
+              <input type="radio" name="infraction" id="<%= k %>" checked="checked">
+              <label for="<%= k %>"><%= csv.columns[k].text %></label>
+          <%  } else if (k != "other") { %>
+          <input type="radio" name="infraction" id="<%= k %>">
+          <label for="<%= k %>"><%= csv.columns[k].text %></label>
+            <%  } %>
+        <%  } %>
         </div>
         <div class="key">
           <div class="border">
             <div class="swatch chosen"></div>
-            Chosen infractions
-          </div>
-          <div class="border">
-            <div class="swatch total"></div>
-            Total infractions
+            Number of infractions
           </div>
         </div>
         <div class="outer">
         </div>
         <div class="source">
-          Source:
+          Source: Seattle Municipal Court
+        </div>
+        <div class="note">
+          Note: Speeding category excludes school-zone citations.
         </div>
         <div class="credit">
           ELLIS SIMANI / THE SEATTLE TIMES
